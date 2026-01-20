@@ -16,9 +16,6 @@ import (
 // global mongo collection reference for "movies"
 var movieCollection *mongo.Collection = database.OpenCollection("movies")
 
-// global validator instance to validate request body struct tags, it's like zod validator
-var validate = validator.New()
-
 // getmovies returns a gin handler that fetches all movies from mongodb
 func GetMovies() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -103,6 +100,9 @@ func AddMovie() gin.HandlerFunc {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input"})
 			return
 		}
+
+		// validator instance liek zod
+var validate = validator.New()
 
 		// validate struct based on validate tags in models.Movie
 		if err := validate.Struct(movie); err != nil {
