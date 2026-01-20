@@ -152,9 +152,9 @@ func LoginUser() gin.HandlerFunc {
 			LastName:        foundUser.LastName,
 			Email:           foundUser.Email,
 			Role:            foundUser.Role,
-			FavouriteGenres: foundUser.FavouriteGenres,
 			Token:           token,
 			RefreshToken:    refreshToken,
+			FavouriteGenres: foundUser.FavouriteGenres,
 		})
 
 	}
