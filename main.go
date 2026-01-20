@@ -19,6 +19,7 @@ func main() {
 	router.GET("/api/movie/:imdb_id", controller.GetMovieByID())
 	router.POST("/api/movies", controller.AddMovie())
 	router.POST("/api/auth", controller.RegisterUser())
+	router.POST("/api/auth/login", controller.LoginUser())
 
 	//	err != nil --> error, nill is like null in javascript, so if its not null == error
 	if err := router.Run(":8080"); err != nil {
