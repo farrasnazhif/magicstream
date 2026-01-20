@@ -108,7 +108,7 @@ func AddMovie() gin.HandlerFunc {
 		if err := validate.Struct(movie); err != nil {
 			// return 400 if validation fails
 			c.JSON(http.StatusBadRequest, gin.H{
-				"error":   "validation failed",
+				"error":   "Validation failed.",
 				"details": err.Error(),
 			})
 			return
