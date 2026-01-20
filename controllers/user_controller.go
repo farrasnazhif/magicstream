@@ -141,5 +141,21 @@ func LoginUser() gin.HandlerFunc {
 
 		err = utils.UpdateAllTokens(foundUser.UserID, token, refreshToken)
 
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update tokens."})
+			return
+		}
+
+		c.JSON(http.StatusOK, models.UserResponse{
+			UserId:          foundUser.UserID,
+			FirstName:       foundUser.FirstName,
+			LastName:        foundUser.LastName,
+			Email:           foundUser.Email,
+			Role:            foundUser.Role,
+			FavouriteGenres: foundUser.FavouriteGenres,
+			Token:           token,
+			RefreshToken:    refreshToken,
+		})
+
 	}
 }
