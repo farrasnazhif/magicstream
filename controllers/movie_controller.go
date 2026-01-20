@@ -70,7 +70,7 @@ func GetMovieByID() gin.HandlerFunc {
 		// movie variable to store the decoded movie
 		var movie models.Movie
 
-		// find one document where imdb_id equals the given param
+		// find one document where imdb_id equals the given param and store it to var movie --> .Decode(&Movie)
 		err := movieCollection.FindOne(ctx, bson.M{"imdb_id": movieID}).Decode(&movie)
 		if err != nil {
 			// return 404 if not found or decode fails
