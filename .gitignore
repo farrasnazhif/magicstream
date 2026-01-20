@@ -1,0 +1,13 @@
+*.env
+assets/
+volumes/
+
+tests/
+.DS_Store
+.idea/
+.vscode
+tmp/
+
+output.csv
+credentials.json
+token.json
