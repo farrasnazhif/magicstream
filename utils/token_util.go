@@ -93,23 +93,29 @@ func UpdateAllTokens(userId, token, refreshToken string) (err error) {
 }
 
 func GetAccessToken(c *gin.Context) (string, error) {
-	// authHeader := c.Request.Header.Get("Authorization")
-	// if authHeader == "" {
-	// 	return "", errors.New("Authorization header is required")
-	// }
-	// tokenString := authHeader[len("Bearer "):]
+	// try authorization header first (postman)
+	authHeader := c.GetHeader("Authorization")
+	if authHeader != "" {
+		const prefix = "Bearer "
+		if len(authHeader) < len(prefix) || authHeader[:len(prefix)] != prefix {
+			return "", errors.New("invalid authorization header format")
+		}
 
-	// if tokenString == "" {
-	// 	return "", errors.New("Bearer token is required")
-	// }
+		tokenString := authHeader[len(prefix):]
+		if tokenString == "" {
+			return "", errors.New("bearer token is required")
+		}
+
+		return tokenString, nil
+	}
+
+	// fallback to cookie (browser)
 	tokenString, err := c.Cookie("access_token")
 	if err != nil {
-
 		return "", err
 	}
 
 	return tokenString, nil
-
 }
 
 func ValidateToken(tokenString string) (*SignedDetails, error) {
