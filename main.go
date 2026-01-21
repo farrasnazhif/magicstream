@@ -16,8 +16,7 @@ func main() {
 	})
 
 	router.GET("/api/movies", controller.GetMovies())
-	router.GET("/api/movie/:imdb_id", controller.GetMovieByID())
-	router.POST("/api/movies", controller.AddMovie())
+
 	router.POST("/api/auth", controller.RegisterUser())
 	router.POST("/api/auth/login", controller.LoginUser())
 
