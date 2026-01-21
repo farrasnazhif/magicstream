@@ -80,6 +80,7 @@ func RegisterUser() gin.HandlerFunc {
 		if count > 0 {
 			// return 409 if user already exist
 			c.JSON(http.StatusConflict, gin.H{"error": "User already exists."})
+			return
 		}
 
 		// define the data
@@ -94,6 +95,7 @@ func RegisterUser() gin.HandlerFunc {
 		if err != nil {
 			// return 500 if failed to create user
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create user."})
+			return
 		}
 
 		// return user as the result

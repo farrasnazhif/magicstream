@@ -102,7 +102,7 @@ func AddMovie() gin.HandlerFunc {
 		}
 
 		// validator instance liek zod
-var validate = validator.New()
+		var validate = validator.New()
 
 		// validate struct based on validate tags in models.Movie
 		if err := validate.Struct(movie); err != nil {
@@ -124,5 +124,11 @@ var validate = validator.New()
 
 		// return inserted id and insert info with 201 status
 		c.JSON(http.StatusCreated, result)
+	}
+}
+
+func AdminReviewUpdate() gin.HandlerFunc {
+	return func(c *gin.Context) {
+
 	}
 }
